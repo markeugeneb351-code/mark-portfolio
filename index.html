@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mark Eugene Belarmino — Workforce Management Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-void:#080B0F;
+    --bg-panel:#10161C;
+    --bg-panel-raised:#151D25;
+    --border-line:#212B34;
+    --border-line-soft:#1A222A;
+    --text-primary:#E9EEF3;
+    --text-secondary:#AEBBC7;
+    --text-muted:#6E8091;
+    --accent-emerald:#16E8AC;
+    --accent-emerald-dim:#0E8F6B;
+    --accent-blue:#4FAAFF;
+    --accent-amber:#FFB454;
+    --font-mono:'JetBrains Mono', monospace;
+    --font-sans:'Manrope', sans-serif;
+    --radius-sm:6px;
+    --radius-md:10px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(22,232,172,0.06), transparent 60%),
+      radial-gradient(ellipse 800px 500px at 100% 0%, rgba(79,170,255,0.05), transparent 55%),
+      var(--bg-void);
+    color:var(--text-primary);
+    font-family:var(--font-sans);
+    line-height:1.5;
+    min-height:100vh;
+  }
+  a{color:inherit; text-decoration:none;}
+  ::selection{background:rgba(22,232,172,0.25); color:#fff;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(8,11,15,0.82);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border-line-soft);
+  }
+  .nav-wrap{
+    max-width:1140px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px;
+  }
+  .brand{display:flex; align-items:center; gap:10px; font-family:var(--font-mono); font-weight:600;}
+  .brand-mark{
+    width:30px; height:30px; border-radius:8px;
+    background:linear-gradient(135deg, var(--accent-emerald), var(--accent-blue));
+    display:flex; align-items:center; justify-content:center;
+    color:#06110D; font-weight:800; font-size:13px;
+  }
+  .brand-name{font-size:14px; color:var(--text-primary);}
+  nav.links{display:flex; gap:4px; align-items:center;}
+  nav.links a{
+    font-family:var(--font-mono); font-size:12.5px; text-transform:uppercase; letter-spacing:0.06em;
+    color:var(--text-muted); padding:8px 12px; border-radius:var(--radius-sm);
+    transition:color .18s ease, background .18s ease;
+  }
+  nav.links a:hover, nav.links a.active{color:var(--text-primary); background:var(--bg-panel-raised);}
+  .btn-cta{
+    font-family:var(--font-mono); font-size:12px; font-weight:600;
+    padding:8px 16px; border-radius:999px; background:var(--accent-emerald); color:#06110D;
+  }
+
+  main{max-width:1140px; margin:0 auto; padding:0 28px;}
+  section{padding:64px 0;}
+  .section-head{margin-bottom:32px;}
+  .eyebrow{
+    font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--accent-blue); display:flex; align-items:center; gap:10px; margin-bottom:10px;
+  }
+  .eyebrow::before{content:''; width:16px; height:1px; background:var(--accent-blue);}
+  h2.section-title{font-size:26px; font-weight:800; letter-spacing:-0.01em;}
+  .section-sub{color:var(--text-muted); font-size:14.5px; margin-top:8px; max-width:560px;}
+
+  /* HERO */
+  .hero{padding-top:60px; padding-bottom:40px;}
+  .hero-grid{display:grid; grid-template-columns:1.4fr 1fr; gap:44px; align-items:center;}
+  .kicker{
+    font-family:var(--font-mono); font-size:12px; color:var(--accent-emerald);
+    letter-spacing:0.12em; text-transform:uppercase; margin-bottom:16px; display:flex; align-items:center; gap:8px;
+  }
+  h1.hero-name{
+    font-size:44px; font-weight:800; letter-spacing:-0.02em; line-height:1.08;
+    background:linear-gradient(135deg, #F4F8FB 20%, var(--text-secondary) 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero-title{font-family:var(--font-mono); font-size:15px; color:var(--accent-blue); margin-top:12px; font-weight:500;}
+  .hero-summary{color:var(--text-secondary); font-size:15.5px; margin-top:20px; max-width:580px; line-height:1.75;}
+  .hero-actions{display:flex; gap:12px; margin-top:28px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--font-mono); font-size:12.5px; font-weight:600; letter-spacing:0.02em;
+    padding:11px 18px; border-radius:var(--radius-sm); border:1px solid var(--border-line);
+    transition:transform .15s ease, border-color .15s ease; cursor:pointer;
+  }
+  .btn-primary{background:var(--accent-emerald); color:#06110D; border-color:var(--accent-emerald);}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 8px 24px rgba(22,232,172,0.22);}
+  .btn-ghost{color:var(--text-primary); background:var(--bg-panel-raised);}
+  .btn-ghost:hover{border-color:var(--accent-blue); transform:translateY(-2px);}
+
+  .id-card{
+    background:var(--bg-panel); border:1px solid var(--border-line-soft); border-radius:var(--radius-md);
+    padding:26px; display:flex; flex-direction:column; gap:16px;
+  }
+  .id-row{display:flex; justify-content:space-between; gap:12px; font-size:13px;}
+  .id-row span:first-child{color:var(--text-muted); font-family:var(--font-mono); font-size:11.5px;}
+  .id-row span:last-child{color:var(--text-primary); text-align:right;}
+  .id-divider{height:1px; background:var(--border-line-soft);}
+
+  /* QUICK FACTS STRIP */
+  .facts-strip{
+    display:grid; grid-template-columns:repeat(4,1fr);
+    border:1px solid var(--border-line); border-radius:var(--radius-md);
+    background:linear-gradient(180deg, var(--bg-panel-raised), var(--bg-panel));
+    overflow:hidden;
+  }
+  .fact{padding:22px 18px; border-right:1px solid var(--border-line-soft);}
+  .fact:last-child{border-right:none;}
+  .fact-value{font-family:var(--font-mono); font-size:24px; font-weight:700; color:var(--accent-emerald);}
+  .fact-label{font-size:11.5px; color:var(--text-muted); margin-top:6px; font-family:var(--font-mono); letter-spacing:0.04em; text-transform:uppercase;}
+
+  /* ABOUT */
+  .about-text{color:var(--text-secondary); font-size:15px; line-height:1.8; max-width:760px;}
+
+  /* TIMELINE */
+  .timeline{position:relative; padding-left:28px;}
+  .timeline::before{
+    content:''; position:absolute; left:5px; top:6px; bottom:6px; width:1px;
+    background:linear-gradient(180deg, var(--accent-emerald), var(--border-line) 90%);
+  }
+  .t-item{position:relative; margin-bottom:14px;}
+  .t-dot{position:absolute; left:-28px; top:22px; width:11px; height:11px; border-radius:50%; background:var(--bg-void); border:2px solid var(--accent-emerald);}
+  .t-item.dim .t-dot{border-color:var(--text-muted);}
+  .t-card{background:var(--bg-panel); border:1px solid var(--border-line-soft); border-radius:var(--radius-md); padding:20px 22px; cursor:pointer; transition:border-color .18s ease, background .18s ease;}
+  .t-card:hover{border-color:rgba(22,232,172,0.35); background:var(--bg-panel-raised);}
+  .t-top{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap;}
+  .t-role{font-size:16px; font-weight:700;}
+  .t-org{font-family:var(--font-mono); font-size:12.5px; color:var(--accent-blue); margin-top:4px;}
+  .t-date{font-family:var(--font-mono); font-size:11.5px; color:var(--text-muted); white-space:nowrap; padding-top:2px;}
+  .t-body{max-height:0; overflow:hidden; transition:max-height .4s ease, margin-top .4s ease; margin-top:0;}
+  .t-item.open .t-body{max-height:400px; margin-top:14px;}
+  .t-body ul{padding-left:18px; display:flex; flex-direction:column; gap:8px;}
+  .t-body li{color:var(--text-secondary); font-size:13.5px; line-height:1.6;}
+  .t-chevron{font-family:var(--font-mono); color:var(--text-muted); transition:transform .25s ease; font-size:13px;}
+  .t-item.open .t-chevron{transform:rotate(180deg); color:var(--accent-emerald);}
+
+  /* SKILLS */
+  .skills-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:20px;}
+  .skill-card{background:var(--bg-panel); border:1px solid var(--border-line-soft); border-radius:var(--radius-md); padding:24px;}
+  .skill-card h3{font-family:var(--font-mono); font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-muted); margin-bottom:16px;}
+  .chip-row{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    font-family:var(--font-mono); font-size:12px; color:var(--text-secondary);
+    background:var(--bg-panel-raised); border:1px solid var(--border-line);
+    padding:7px 12px; border-radius:999px; transition:all .18s ease;
+  }
+  .chip:hover{border-color:var(--accent-emerald); color:var(--accent-emerald);}
+  .skill-list{list-style:none; display:flex; flex-direction:column; gap:12px;}
+  .skill-list li{
+    position:relative; padding-left:20px; font-size:13.5px; color:var(--text-secondary);
+    font-family:var(--font-sans);
+  }
+  .skill-list li::before{
+    content:'▸'; position:absolute; left:0; top:0; color:var(--accent-emerald);
+    font-family:var(--font-mono); font-weight:700;
+  }
+
+  /* EDUCATION */
+  .edu-card{
+    background:var(--bg-panel); border:1px solid var(--border-line-soft); border-radius:var(--radius-md);
+    padding:26px; display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;
+  }
+  .edu-card h3{font-size:16.5px; font-weight:700;}
+  .edu-card p{color:var(--text-muted); font-family:var(--font-mono); font-size:12.5px; margin-top:6px;}
+
+  /* CONTACT */
+  .contact-panel{
+    background:linear-gradient(135deg, var(--bg-panel-raised), var(--bg-panel));
+    border:1px solid var(--border-line-soft); border-radius:var(--radius-md);
+    padding:44px; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap;
+  }
+  .contact-panel h2{font-size:24px; font-weight:800;}
+  .contact-panel p{color:var(--text-muted); font-size:14px; margin-top:8px;}
+  footer{border-top:1px solid var(--border-line-soft); padding:26px 28px; text-align:center; color:var(--text-muted); font-size:12px; font-family:var(--font-mono);}
+
+  .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media (max-width: 880px){
+    .hero-grid{grid-template-columns:1fr;}
+    .facts-strip{grid-template-columns:repeat(2,1fr);}
+    .fact:nth-child(2n){border-right:none;}
+    .fact{border-bottom:1px solid var(--border-line-soft);}
+    .skills-grid{grid-template-columns:1fr;}
+    nav.links{display:none;}
+    h1.hero-name{font-size:32px;}
+    .contact-panel{flex-direction:column; align-items:flex-start;}
+    .edu-card{flex-direction:column; align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <div class="brand">
+      <div class="brand-mark">MB</div>
+      <span class="brand-name">Mark&nbsp;Belarmino</span>
+    </div>
+    <nav class="links" id="navLinks">
+      <a href="#home" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="btn-cta">Get In Touch</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-grid">
+      <div>
+        <div class="kicker">/// Workforce Management &amp; Real-Time Analytics</div>
+        <h1 class="hero-name">Mark Eugene Belarmino</h1>
+        <div class="hero-title">Sr. Executive Workforce Real-Time Analyst</div>
+        <p class="hero-summary">
+          Dedicated and analytical-minded professional with over 6 years of experience in the Business
+          Process Outsourcing (BPO) industry, specializing in workforce management, real-time analytics,
+          and team leadership across retail, healthcare, and financial accounts. Proven ability to leverage
+          data-driven insights to enhance operational efficiency, optimize service level agreements (SLAs),
+          guide team performance, and support strategic decision-making. Skilled in incident management,
+          dialer and WFM tools, and cross-functional vendor collaboration.
+        </p>
+        <div class="hero-actions">
+          <a href="#experience" class="btn btn-primary">View Experience</a>
+          <a href="#contact" class="btn btn-ghost">Contact Me</a>
+        </div>
+      </div>
+      <div class="id-card">
+        <div class="id-row"><span>LOCATION</span><span>Cebu City, Philippines</span></div>
+        <div class="id-divider"></div>
+        <div class="id-row"><span>EMAIL</span><span>markebelarmino@gmail.com</span></div>
+        <div class="id-divider"></div>
+        <div class="id-row"><span>LINKEDIN</span><span><a href="https://www.linkedin.com/in/markeugene/" target="_blank" rel="noopener" style="color:var(--accent-blue);">/in/markeugene</a></span></div>
+      </div>
+    </div>
+
+    <div class="facts-strip reveal" style="margin-top:44px;">
+      <div class="fact"><div class="fact-value">6+</div><div class="fact-label">Years in WFM / BPO</div></div>
+      <div class="fact"><div class="fact-value">3</div><div class="fact-label">Industries: Retail, Healthcare, Finance</div></div>
+      <div class="fact"><div class="fact-value">5</div><div class="fact-label">Roles Held</div></div>
+      <div class="fact"><div class="fact-value">BS-IT</div><div class="fact-label">ACLC College of Ormoc</div></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-head reveal">
+      <div class="eyebrow">About</div>
+      <h2 class="section-title">Professional Summary</h2>
+    </div>
+    <p class="about-text reveal">
+      Mark builds his career around the gap between what a forecast predicts and what the floor actually
+      does — reading real-time KPIs, catching adherence and service-level drift early, and translating
+      that into dashboards and reports leadership can act on. Across retail, healthcare, and financial
+      accounts, his work has consistently paired hands-on real-time monitoring with the people side of
+      operations: leading vendor RTAs, training frontline teams, and staying accountable for HIPAA-compliant
+      documentation in healthcare settings.
+    </p>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-head reveal">
+      <div class="eyebrow">Career History</div>
+      <h2 class="section-title">Professional Experience</h2>
+      <p class="section-sub">Click any entry to expand the full list of responsibilities.</p>
+    </div>
+    <div class="timeline">
+
+      <div class="t-item open reveal">
+        <div class="t-dot"></div>
+        <div class="t-card" onclick="this.parentElement.classList.toggle('open')">
+          <div class="t-top">
+            <div>
+              <div class="t-role">Sr. Executive Workforce Real-Time Analyst (Retail)</div>
+              <div class="t-org">Lumina Datamatics</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div class="t-date">Jan 2024 — May 2026</div>
+              <div class="t-chevron">▾</div>
+            </div>
+          </div>
+          <div class="t-body">
+            <ul>
+              <li>Monitored real-time KPIs across vendor partners, including call volume, Average Handle Time (AHT), and schedule adherence.</li>
+              <li>Identified performance trends and operational gaps to optimize service levels and resource allocation.</li>
+              <li>Developed detailed dashboards and operational reports for key stakeholders and leadership teams.</li>
+              <li>Collaborated closely with vendors to improve operational efficiency, data accuracy, and service quality.</li>
+              <li>Acted as the primary Point of Contact (POC) for vendor-related concerns, including system issues, skilling, and schedule adjustments.</li>
+              <li>Led vendor Real-Time Analysts (RTAs), providing guidance on reporting, technical system issues, LOB trends, drivers, and overall performance.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="t-item reveal">
+        <div class="t-dot"></div>
+        <div class="t-card" onclick="this.parentElement.classList.toggle('open')">
+          <div class="t-top">
+            <div>
+              <div class="t-role">Workforce Real-Time Analyst (Healthcare, Financial, Sales)</div>
+              <div class="t-org">Virtual Staffing Solutions</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div class="t-date">May 2021 — Jan 2024</div>
+              <div class="t-chevron">▾</div>
+            </div>
+          </div>
+          <div class="t-body">
+            <ul>
+              <li>Managed real-time performance metrics and rigorous schedule adherence for multiple cross-functional teams.</li>
+              <li>Built and optimized agent schedules based on volume demand forecasts and specific staffing requirements.</li>
+              <li>Led incident management reporting and executed real-time performance corrections to mitigate service disruptions.</li>
+              <li>Provided actionable insights and reports to operations leadership to help improve key performance metrics.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="t-item reveal">
+        <div class="t-dot"></div>
+        <div class="t-card" onclick="this.parentElement.classList.toggle('open')">
+          <div class="t-top">
+            <div>
+              <div class="t-role">Team Leader for Healthcare</div>
+              <div class="t-org">Virtual Staffing Solutions</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div class="t-date">2020 — 2021</div>
+              <div class="t-chevron">▾</div>
+            </div>
+          </div>
+          <div class="t-body">
+            <ul>
+              <li>Supervised a specialized team managing patient monitoring through Remote Patient Monitoring (RPM) tools, ensuring accurate tracking of vitals, medication adherence, and symptom reporting.</li>
+              <li>Collaborated with multidisciplinary healthcare teams to develop and implement individualized care plans.</li>
+              <li>Ensured strict compliance with HIPAA regulations through meticulous Electronic Health Record (EHR) documentation and secure data handling.</li>
+              <li>Escalated critical patient concerns promptly to healthcare professionals to support timely clinical interventions.</li>
+              <li>Monitored and evaluated team and individual performance, providing coaching and feedback to enhance productivity and care quality.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="t-item dim reveal">
+        <div class="t-dot"></div>
+        <div class="t-card" onclick="this.parentElement.classList.toggle('open')">
+          <div class="t-top">
+            <div>
+              <div class="t-role">Trainer — Medicare Program</div>
+              <div class="t-org">Grupo Noa International</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div class="t-date">2020 — Present</div>
+              <div class="t-chevron">▾</div>
+            </div>
+          </div>
+          <div class="t-body">
+            <ul>
+              <li>Conducted comprehensive training programs on complex Medicare guidelines and HIPAA compliance policies.</li>
+              <li>Evaluated trainee performance during onboarding and refined training materials based on assessment results.</li>
+              <li>Improved overall training effectiveness and knowledge retention through continuous feedback loops.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="t-item dim reveal">
+        <div class="t-dot"></div>
+        <div class="t-card" onclick="this.parentElement.classList.toggle('open')">
+          <div class="t-top">
+            <div>
+              <div class="t-role">General Virtual Assistant (Freelance)</div>
+              <div class="t-org">Upwork · Ormoc City, Philippines</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div class="t-date">2019 — 2020</div>
+              <div class="t-chevron">▾</div>
+            </div>
+          </div>
+          <div class="t-body">
+            <ul>
+              <li>Provided virtual administrative support to international clients across various industry sectors.</li>
+              <li>Coordinated meetings, travel arrangements, email management, and professional client communication.</li>
+              <li>Conducted market and operational research, presenting clear data-driven recommendations.</li>
+              <li>Managed residential and commercial property operations, inspections, and tenant relations.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-head reveal">
+      <div class="eyebrow">Core Competencies</div>
+      <h2 class="section-title">Skills</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <h3>Workforce Management &amp; Analytics</h3>
+        <ul class="skill-list">
+          <li>Real-Time Monitoring</li>
+          <li>Historical Data Analysis</li>
+          <li>Forecasting</li>
+          <li>Scheduling</li>
+          <li>AHT &amp; Adherence Optimization</li>
+          <li>KPI Reporting</li>
+          <li>Dashboard Creation</li>
+        </ul>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Tools &amp; Systems</h3>
+        <ul class="skill-list">
+          <li>WFM Software</li>
+          <li>Dialer Management Systems</li>
+          <li>Advanced Excel</li>
+          <li>Remote Patient Monitoring (RPM)</li>
+          <li>EHR Documentation</li>
+        </ul>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Leadership &amp; Management</h3>
+        <ul class="skill-list">
+          <li>Team Supervision</li>
+          <li>Vendor Management</li>
+          <li>Incident Management</li>
+          <li>Coaching &amp; Feedback</li>
+          <li>Training &amp; Development</li>
+          <li>Stakeholder Communication</li>
+        </ul>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Industry Knowledge</h3>
+        <ul class="skill-list">
+          <li>Retail</li>
+          <li>Healthcare</li>
+          <li>Financial Services</li>
+          <li>Sales</li>
+          <li>Medicare Guidelines</li>
+          <li>HIPAA Compliance</li>
+          <li>General Virtual Assistance</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-head reveal">
+      <div class="eyebrow">Background</div>
+      <h2 class="section-title">Education</h2>
+    </div>
+    <div class="edu-card reveal">
+      <div>
+        <h3>Bachelor of Science in Information Technology</h3>
+        <p>ACLC College of Ormoc</p>
+      </div>
+      <span class="chip" style="border-color:var(--accent-emerald); color:var(--accent-emerald);">BS-IT</span>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-panel reveal">
+      <div>
+        <h2>Let's talk operations.</h2>
+        <p>Open to real-time WFM roles, staffing model consulting, and operations analyst work.</p>
+      </div>
+      <div class="hero-actions" style="margin-top:0;">
+        <a href="mailto:markebelarmino@gmail.com" class="btn btn-primary">Email Me</a>
+        <a href="https://www.linkedin.com/in/markeugene/" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>© 2026 Mark Eugene Belarmino · Cebu City, Philippines</footer>
+
+<script>
+  const sections = document.querySelectorAll('main section[id]');
+  const navLinks = document.querySelectorAll('nav.links a');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        navLinks.forEach(l=>l.classList.remove('active'));
+        const link = document.querySelector(`nav.links a[href="#${e.target.id}"]`);
+        if(link) link.classList.add('active');
+      }
+    });
+  }, {rootMargin:'-40% 0px -50% 0px'});
+  sections.forEach(s=>io.observe(s));
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealIo = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); revealIo.unobserve(e.target); }
+    });
+  }, {threshold:0.12});
+  revealEls.forEach(el=>revealIo.observe(el));
+
+  document.querySelectorAll('.t-card').forEach(card=>{
+    card.setAttribute('role','button');
+    card.setAttribute('tabindex','0');
+    card.addEventListener('keypress', (e)=>{ if(e.key === 'Enter') card.click(); });
+  });
+</script>
+
+</body>
+</html>
